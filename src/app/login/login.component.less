@@ -1,0 +1,39 @@
+@orange: #F07A32;
+
+.login {
+  display: flex;
+  height: calc(100vh - 100px);
+  align-items: center;
+}
+.password-container {
+  position: relative;
+  .password-icon {
+    position: absolute;
+    top: 25%;
+    right: 5px;
+    color: grey;
+    cursor: pointer;
+  }
+}
+.forgot-password { 
+  color: @orange;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  .btn {
+    width: calc(50% - 5px);
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.create-account {
+  color: @orange;
+  border-color: @orange;
+}
+.sign-in {
+  background-color: @orange;
+}

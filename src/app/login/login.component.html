@@ -1,3 +1,32 @@
-<p>
-  login works!
-</p>
+<div class="login">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-5 offset-md-3">
+            <h2>Welcome</h2>
+            <h6>Please sign in to access your account</h6>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" value="">
+            </div>
+            <div class="form-group password-container">
+                <input 
+                [attr.type]="isPassword?'password':'text'" 
+                class="form-control" 
+                placeholder="Password" 
+                value="">
+                <i 
+                  class="fa fa-eye password-icon" 
+                  (mousedown)="showPassword()" 
+                  (mouseup)="hidePassword()"></i>
+            </div>
+            <div class="form-group mb-0">
+              <a href="#" class="forgot-password" value="Login">Forgot Password?</a>
+            </div>
+            <br>
+            <div class="form-group btn-container">
+              <button type="button" class="btn btn-lg create-account">Create account</button>
+              <button type="button" class="btn btn-lg text-light sign-in">Sign in</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
