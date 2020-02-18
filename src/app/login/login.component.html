@@ -54,11 +54,16 @@
           <div class="form-group mb-0">
             <a href="#" class="forgot-password" value="Login">Forgot Password?</a>
           </div>
-          
           <br>
           <div class="form-group btn-container">
             <button type="button" class="btn btn-lg create-account">Create account</button>
             <button type="submit" class="btn btn-lg text-light sign-in" >Sign in</button>
+          </div>
+
+          <div class="invalid-container" *ngIf="postError">
+            <div class="alert alert-danger">
+              {{postErrorMessage}}
+            </div>
           </div>
         </div>
       </div>

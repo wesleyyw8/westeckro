@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isPasswordVisible: boolean = true;
   user = new User();
+  postError = false;
+  postErrorMessage = '';
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -46,8 +48,19 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       };
-      this.authService.logIn(this.user);
-      this.router.navigate(['/congratulations']);
+      this.authService.logIn(this.user).subscribe(
+        result => {
+          console.log('success: ', result);
+          this.router.navigate(['/congratulations']);
+        },
+          error => this.onHttpError(error)
+        );
     }
+  }
+
+  onHttpError(errorResponse: any) {
+    console.log('error:', errorResponse);
+    this.postError = true;
+    this.postErrorMessage = errorResponse.error.errorMessage;
   }
 }
