@@ -76,5 +76,4 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
     expect(mockRouter.navigate).toHaveBeenCalled();
   });
-
 });

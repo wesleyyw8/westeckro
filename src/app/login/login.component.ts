@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, NgForm } from '@angular/forms';
 import { User } from './user';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
   isPasswordVisible: boolean = true;
   user = new User();
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -39,6 +42,11 @@ export class LoginComponent implements OnInit {
 
   save(form: NgForm) {
     if (this.loginForm.valid) {
+      this.user = {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+      this.authService.logIn(this.user);
       this.router.navigate(['/congratulations']);
     }
   }
