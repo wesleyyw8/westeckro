@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, NgForm } from '@angular/forms';
 import { User } from './user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   isPasswordVisible: boolean = true;
   user = new User();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,6 +38,8 @@ export class LoginComponent implements OnInit {
   }
 
   save(form: NgForm) {
-    console.log(form.submitted);
+    if (this.loginForm.valid) {
+      this.router.navigate(['/congratulations']);
+    }
   }
 }
