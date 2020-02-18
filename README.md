@@ -13,6 +13,7 @@ npm run test
 
 My toughts:  
 When user tries to go to the /congratulations route, the auth.guard will be triggered and the user will be redirected to login page if he isnt signed in.  
+I put a loader because sending data to the putsreq.com serve might take some time  
 Some unit tests and integration tests were written on the component.spec.ts
 I had to change the json.start script and create the server.js because of heroku  
 I hope you enjoy!  
