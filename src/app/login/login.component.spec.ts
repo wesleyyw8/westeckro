@@ -3,19 +3,29 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+import { of } from 'rxjs';
+import { AuthService } from './auth.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let mockRouter: Router;
-
+  let mockAuthService;
+  
   beforeEach(async(() => {
     mockRouter = jasmine.createSpyObj(['navigate']);
+    mockAuthService = jasmine.createSpyObj(['logIn']);
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
-      imports: [ReactiveFormsModule, FormsModule],
-      providers: [{
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
+      providers: [
+      {
         provide: Router, useValue: mockRouter
+      },
+      {
+        provide: AuthService, useValue: mockAuthService
       }]
     })
     .compileComponents();
@@ -39,6 +49,8 @@ describe('LoginComponent', () => {
     const password = component.loginForm.controls.password;
     expect(password.invalid).toBeTruthy();
     password.setValue('asd');
+    expect(password.invalid).toBeTruthy();
+    password.setValue('asdASD123');
     expect(password.invalid).toBeTruthy();
     password.setValue('asdASD#3a');
     expect(password.invalid).toBeFalsy();
@@ -66,9 +78,10 @@ describe('LoginComponent', () => {
     expect(firstInvalidContainer.textContent).toContain('Enter a valid email ');
   });
 
-  it('in case forms is valid, change routes methods should be called', () => {
+  it('after click on submit button, in case forms is valid, the method that goes to other page should be called', () => {
     const email = component.loginForm.controls.email;
     const password = component.loginForm.controls.password;
+    mockAuthService.logIn.and.returnValue(of(true));
     email.setValue('asdasd@awdaw.com');
     password.setValue('asdASD#3a');
     const btn = fixture.nativeElement.querySelectorAll('button[type="submit"]')[0];

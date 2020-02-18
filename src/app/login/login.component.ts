@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, this.customRegexValidator(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i)]],
       password: ['', [Validators.required,
-        this.customRegexValidator(/(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?\/&gt;.&lt;,])(?!.*\s).*$/)]],
+        this.customRegexValidator(/((?=.*\d)(?=.*[A-Z])(?=.*\W).{8,})/)]],
     });
   }
 
@@ -61,6 +61,6 @@ export class LoginComponent implements OnInit {
   onHttpError(errorResponse: any) {
     console.log('error:', errorResponse);
     this.postError = true;
-    this.postErrorMessage = errorResponse.error.errorMessage;
+    this.postErrorMessage = errorResponse.message;
   }
 }
