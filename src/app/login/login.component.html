@@ -57,7 +57,34 @@
           <br>
           <div class="form-group btn-container">
             <button type="button" class="btn btn-lg create-account">Create account</button>
-            <button type="submit" class="btn btn-lg text-light sign-in" >Sign in</button>
+            <button type="submit" [disabled]="isLoading" class="btn btn-lg text-light sign-in" >Sign in</button>
+          </div>
+
+          <div *ngIf="isLoading">
+            <div class="spinner-grow text-primary">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-secondary">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-danger">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-warning">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-info">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-light">
+              <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-dark">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
 
           <div class="invalid-container" *ngIf="postError">

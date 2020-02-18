@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   user = new User();
   postError = false;
   postErrorMessage = '';
+  isLoading = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -48,6 +49,8 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       };
+      this.isLoading = true;
+      this.postError = false;
       this.authService.logIn(this.user).subscribe(
         result => {
           console.log('success: ', result);
@@ -62,5 +65,6 @@ export class LoginComponent implements OnInit {
     console.log('error:', errorResponse);
     this.postError = true;
     this.postErrorMessage = errorResponse.message;
+    this.isLoading = false;
   }
 }

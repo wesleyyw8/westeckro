@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/internal/operators';
 
 @Injectable({
   providedIn: 'root'
