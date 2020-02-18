@@ -32,14 +32,15 @@
 
           <div class="form-group password-container">
             <input 
-              [attr.type]="isPasswordVisible?'password':'text'" 
+              [attr.type]="isPasswordVisible?'text':'password'" 
               class="form-control" 
               id="password"
               placeholder="Password" 
               formControlName="password"
               [ngClass]="{'is-invalid': ngForm.submitted && !loginForm.get('password').valid }"
             >
-            <i class="fa fa-eye password-icon" (mousedown)="showPassword()" (mouseup)="hidePassword()"></i>
+            <i class="fa fa-eye password-icon" 
+              (mousedown)="showPassword($event)"></i>
             <div class="invalid-container" 
             *ngIf="ngForm.submitted && !loginForm.get('password').valid">
               <div *ngIf="loginForm.get('password').errors?.customRegex" class="alert alert-danger">

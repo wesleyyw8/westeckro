@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  isPasswordVisible: boolean = true;
+  isPasswordVisible: boolean = false;
   user = new User();
   postError = false;
   postErrorMessage = '';
@@ -35,12 +35,11 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  showPassword() {
-    this.isPasswordVisible = false;
-  }
-
-  hidePassword() {
+  showPassword(event) {
     this.isPasswordVisible = true;
+    setTimeout(() => {
+      this.isPasswordVisible = false;
+    }, 500);
   }
 
   save(form: NgForm) {
