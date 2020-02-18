@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, NgForm } from '@angular/forms';
 import { User } from './user';
 @Component({
   selector: 'app-login',
@@ -34,5 +34,9 @@ export class LoginComponent implements OnInit {
 
   hidePassword() {
     this.isPasswordVisible = true;
+  }
+
+  save(form: NgForm) {
+    console.log(form.submitted);
   }
 }

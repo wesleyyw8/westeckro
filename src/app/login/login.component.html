@@ -1,7 +1,8 @@
 <div class="login">
   <div class="container">
     <form  novalidate
-    (ngSubmit)="save()"
+    (ngSubmit)="save(ngForm)"
+    #ngForm="ngForm" 
     [formGroup]="loginForm">
       <div class="row">
         <div class="col-sm-12 col-md-5 offset-md-3">
@@ -13,9 +14,12 @@
               class="form-control" 
               placeholder="Email" 
               formControlName="email"
-              [ngClass]="{'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid }"
+              [ngClass]="{
+                'is-invalid': ngForm.submitted && !loginForm.get('email').valid 
+              }"
               >
-            <div class="invalid-container">
+            <div class="invalid-container" 
+            *ngIf="ngForm.submitted && !loginForm.get('email').valid">
               <div *ngIf="loginForm.get('email').errors?.customRegex" class="alert alert-danger">
                 Enter a valid email
               </div>
@@ -23,8 +27,6 @@
                 Email cant be empty
               </div>
             </div>
-            touched : {{loginForm.get('email').touched }}
-            dirty: {{loginForm.get('email').dirty}}
           </div>
 
           <div class="form-group password-container">
@@ -33,10 +35,11 @@
               class="form-control" 
               placeholder="Password" 
               formControlName="password"
-              [ngClass]="{'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid }"
-              >
+              [ngClass]="{'is-invalid': ngForm.submitted && !loginForm.get('password').valid }"
+            >
             <i class="fa fa-eye password-icon" (mousedown)="showPassword()" (mouseup)="hidePassword()"></i>
-            <div class="invalid-container">
+            <div class="invalid-container" 
+            *ngIf="ngForm.submitted && !loginForm.get('password').valid">
               <div *ngIf="loginForm.get('password').errors?.customRegex" class="alert alert-danger">
                 Password should have 8 characters or longer, at least 1 special character, 1 number, 1 uppercase
                 character and 1 lower case character
@@ -53,7 +56,7 @@
           <br>
           <div class="form-group btn-container">
             <button type="button" class="btn btn-lg create-account">Create account</button>
-            <button type="button" class="btn btn-lg text-light sign-in">Sign in</button>
+            <button type="submit" class="btn btn-lg text-light sign-in" >Sign in</button>
           </div>
         </div>
       </div>
