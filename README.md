@@ -1,12 +1,23 @@
 # Teckrowes
 
-Hello guys! in order to run the project you'll have to do 2 things:  
+Hello guys! in order to run the project locally you'll have to do 2 things:    
 1 - npm install  
-2 - npm run start  
+2 - ng serve  
+3 - go to http://localhost:4200/  
+
+Live application on:  
+https://westeckro.herokuapp.com/login  
   
 In order to run the tests:  
 npm run test  
 
+My toughts:  
+When user tries to go to the /congratulations route, the auth.guard will be triggered and the user will be redirected to login page if he isnt signed in.  
+Some unit tests and integration tests were written on the component.spec.ts
+I had to change the json.start script and create the server.js because of heroku  
+I hope you enjoy!  
+
+Spec:  
 1 - Using an Angular framework, create a login page for Teckro which is mobile responsive. The designs of the page are attached.  
 2 - Use best guess on colours, padding, sizing etc.  
 3 - There should be email validation to make sure a valid email is used.  
