@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   onHttpError(errorResponse: any) {
     console.log('error:', errorResponse);
     this.postError = true;
-    this.postErrorMessage = errorResponse.message;
+    this.postErrorMessage = errorResponse.error;
     this.isLoading = false;
   }
 }
