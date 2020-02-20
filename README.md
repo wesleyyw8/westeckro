@@ -28,4 +28,4 @@ Spec:
 7 - The text box should turn red when it fails  
 8 - Changing the value in the textbox should remove red when the value is made valid (before hitting submit)  
 9 - The form should submit to a dummy server.  
-
+10 - If the password is $Password123 then the user should be taken to another page
